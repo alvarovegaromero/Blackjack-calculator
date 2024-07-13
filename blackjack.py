@@ -8,6 +8,10 @@ def suggest_action(player_hand: Hand, dealer_card: Card, card_counter: CardCount
     # simple strategy
     if player_value >= 17:
         return 'STAND'
+    elif player_value == 11:
+        return 'DOUBLE'
+    elif player_value == 10 and dealer_card.rank in ['4', '5', '6']:
+        return 'DOUBLE'
     elif player_value <= 11:
         return 'HIT'
     else: # value in [12, 16]
