@@ -2,10 +2,10 @@ from card import Card
 from hand import Hand
 from card_counter import CardCounter
 
-def suggest_action(player_hand: Hand, dealer_card: Card, card_counter: CardCounter):
+def suggest_action(player_hand: Hand, dealer_card: Card, card_counter: CardCounter, surrender_allowed: bool):
     player_value = player_hand.value()
 
-    # simple strategy
+    # Strategy
     if player_value >= 17:
         return 'STAND'
     elif player_value == 11:
@@ -14,6 +14,8 @@ def suggest_action(player_hand: Hand, dealer_card: Card, card_counter: CardCount
         return 'DOUBLE'
     elif player_value <= 11:
         return 'HIT'
+    elif surrender_allowed and player_value == 16 and dealer_card.rank in ['9', '10', 'A']:
+        return 'SURRENDER'
     else: # value in [12, 16]
         # more advanced
         dealer_prob = card_counter.get_probability(dealer_card.rank)
@@ -27,6 +29,7 @@ def main():
 
     num_decks = int(input("Enter number of decks: "))
     card_counter = CardCounter(num_decks)
+    surrender_allowed = input("Is surrender allowed? (y/n): ").lower() == 'y'
 
     while True:
         player_input = input("Enter player's hand (comma-separated values, e.g: A,10): ").split(',')
@@ -39,7 +42,7 @@ def main():
             card_counter.record_card(card)
         card_counter.record_card(dealer_card)
 
-        action = suggest_action(player_hand, dealer_card, card_counter)
+        action = suggest_action(player_hand, dealer_card, card_counter, surrender_allowed)
 
         print(f"Suggested action: {action}")
 
