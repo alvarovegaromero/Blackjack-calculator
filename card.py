@@ -1,8 +1,8 @@
 class Card:
-    def __init__(self, rank):
+    def __init__(self, rank: str):
         self.rank = rank
 
-    def value(self):
+    def value(self) -> int:
         if self.rank in ['J', 'Q', 'K']:
             return 10
         elif self.rank == 'A':
@@ -10,5 +10,5 @@ class Card:
         else:
             return int(self.rank)
 
-    def __str__(self):
+    def __str__(self) -> str:
         return f'{self.rank}'
