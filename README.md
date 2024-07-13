@@ -7,8 +7,8 @@ BlackJack calculator. It analyses your hand and increase your odds of winning.
 - ENHC (European no hole card) is activated by default
 
 # Available actions are:
--- HIT
--- STAND
--- DOUBLE
--- SPLIT
--- SURRENDER? (to be defined)
+- HIT
+- STAND
+- DOUBLE
+- SPLIT
+- SURRENDER? (to be defined)
