@@ -1,8 +1,11 @@
+from typing import List
+from card import Card
+
 class Hand:
-    def __init__(self, cards):
+    def __init__(self, cards: List[Card]):
         self.cards = cards
 
-    def value(self):
+    def value(self) -> int:
         total = sum(card.value() for card in self.cards)
         aces = sum(card.rank == 'A' for card in self.cards)
 
@@ -12,5 +15,5 @@ class Hand:
 
         return total
     
-    def __str__(self):
+    def __str__(self) -> str:
         return ', '.join(str(card) for card in self.cards)
