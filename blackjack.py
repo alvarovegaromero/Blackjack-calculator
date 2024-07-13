@@ -17,7 +17,6 @@ def suggest_action(player_hand: Hand, dealer_card: Card, card_counter: CardCount
     elif surrender_allowed and player_value == 16 and dealer_card.rank in ['9', '10', 'A']:
         return 'SURRENDER'
     else: # value in [12, 16]
-        # more advanced
         dealer_prob = card_counter.get_probability(dealer_card.rank)
         if dealer_prob < 0.5:
             return 'STAND'
@@ -45,6 +44,15 @@ def main():
         action = suggest_action(player_hand, dealer_card, card_counter, surrender_allowed)
 
         print(f"Suggested action: {action}")
+
+        # add_card = input("Do you want to add a new card? (y/n): ").lower()
+        # if add_card == 'y':
+        #    new_card_input = input("Enter new card (single value, e.g: 3): ")
+        #    new_card = Card(new_card_input)
+        #    player_hand.add_card(new_card)
+        #    card_counter.record_card(new_card)
+        # else:
+        #    break
 
         cont = input("Do you want to continue? (y/n): ").lower()
         if cont != 'y':
