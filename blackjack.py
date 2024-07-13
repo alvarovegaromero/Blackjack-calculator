@@ -25,8 +25,8 @@ def main():
     card_counter = CardCounter(num_decks)
 
     while True:
-        player_input = input("Enter player's hand (comma-separated values, e.g., 2,10,A): ").split(',')
-        dealer_input = input("Enter dealer's upcard (single value, e.g., 3): ")
+        player_input = input("Enter player's hand (comma-separated values, e.g: A,10): ").split(',')
+        dealer_input = input("Enter dealer's upcard (single value, e.g: 3): ")
 
         player_hand = Hand([Card(rank) for rank in player_input])
         dealer_card = Card(dealer_input)
