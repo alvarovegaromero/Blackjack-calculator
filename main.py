@@ -15,7 +15,7 @@ def main():
         player_hand = get_player_hand()
         dealer_card = get_dealer_card()
 
-        game.play_hand()
+        game.play_hand(player_hand, dealer_card)
 
         cont = get_user_input("Do you want to continue playing? (y/n): ", valid_responses=['y', 'n'])
         if cont != 'y':

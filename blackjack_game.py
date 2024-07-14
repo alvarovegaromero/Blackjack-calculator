@@ -14,7 +14,10 @@ class BlackjackGame:
         self.player_hand = None
         self.dealer_card = None
 
-    def play_hand(self):
+    def play_hand(self, player_hand, dealer_card):
+        self.player_hand = player_hand
+        self.dealer_card = dealer_card
+        
         for card in self.player_hand.cards:
             self.card_counter.record_card(card)
         self.card_counter.record_card(self.dealer_card)
