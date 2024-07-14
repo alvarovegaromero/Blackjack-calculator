@@ -7,7 +7,7 @@ def suggest_action(player_hand: Hand,
                    dealer_card: Card, 
                    card_counter: CardCounter, 
                    surrender_allowed: bool,
-                   dealer_hits_on_soft_17: bool
+                   dealer_stands_on_soft_17: bool
                    ) -> Action:
     
     player_value = player_hand.value()
