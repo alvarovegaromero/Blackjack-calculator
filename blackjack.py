@@ -1,3 +1,4 @@
+from actions import Action
 from card import Card
 from hand import Hand
 from card_counter import CardCounter
@@ -12,21 +13,21 @@ def suggest_action(player_hand: Hand, dealer_card: Card, card_counter: CardCount
 
     # Strategy
     if player_value >= 17:
-        return 'STAND'
+        return Action.STAND
     elif player_value == 11:
-        return 'DOUBLE'
+        return Action.DOUBLE
     elif player_value == 10 and dealer_card.rank in ['4', '5', '6']:
-        return 'DOUBLE'
+        return Action.DOUBLE
     elif player_value <= 11:
-        return 'HIT'
+        return Action.HIT
     elif surrender_allowed and player_value == 16 and dealer_card.rank in ['9', '10', 'A']:
-        return 'SURRENDER'
+        return Action.SURRENDER
     else: # value in [12, 16]
         dealer_prob = card_counter.get_probability(dealer_card.rank)
         if dealer_prob < 0.5:
-            return 'STAND'
+            return Action.STAND
         else:
-            return 'HIT'
+            return Action.HIT
 
 def main():
     print("Welcome to Blackjack Advisor!")
