@@ -18,6 +18,10 @@ def get_dealer_card():
     dealer_input = input("Enter dealer's upcard (single value, e.g: 3): ")
     return Card(dealer_input)
 
+def get_player_new_card():
+    new_card_input = input("Enter the new card for the player (single value, e.g: 3): ")
+    return Card(new_card_input)
+
 def get_user_input(prompt, type_=str, valid_responses=None):
     while True:
         response = type_(input(prompt))
