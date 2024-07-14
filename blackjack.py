@@ -1,9 +1,6 @@
+from blackjack_game import BlackjackGame
 from card import Card
 from hand import Hand
-from card_counter import CardCounter
-from strategy import suggest_action
-
-MAXIMUM_VALUE = 21
 
 def get_num_decks():
     return int(input("Enter number of decks: "))
@@ -22,40 +19,30 @@ def get_dealer_card():
     dealer_input = input("Enter dealer's upcard (single value, e.g: 3): ")
     return Card(dealer_input)
 
-def play_hand(player_hand, dealer_card, card_counter, surrender_allowed, dealer_hits_on_soft_17):
-    for card in player_hand.cards:
-        card_counter.record_card(card)
-    card_counter.record_card(dealer_card)
-
-    while player_hand.value() <= MAXIMUM_VALUE:
-        action = suggest_action(player_hand, dealer_card, card_counter, surrender_allowed, dealer_hits_on_soft_17)
-
-        print(f"Suggested action: {action}")
-
-        add_card = input("Do you want to add a new card to you hand? (y/n): ").lower()
-        if add_card == 'y':
-            new_card_input = input("Enter your new card (single value, e.g: 3): ")
-            new_card = Card(new_card_input)
-            player_hand.add_card(new_card)
-            card_counter.record_card(new_card)
+def get_user_input(prompt, type_=str, valid_responses=None):
+    while True:
+        response = type_(input(prompt))
+        if valid_responses and response not in valid_responses:
+            print(f"Invalid response. Please enter one of the following: {valid_responses}")
         else:
-            break
+            return response
 
 def main():
     print("Welcome to Blackjack Advisor!")
 
-    num_decks = get_num_decks()
-    card_counter = CardCounter(num_decks)
-    surrender_allowed = is_surrender_allowed()
-    dealer_hits_on_soft_17 = get_dealer_strategy()
+    num_decks = get_user_input("Enter number of decks: ", int)
+    surrender_allowed = get_user_input("Is surrender allowed? (y/n): ", valid_responses=['y', 'n']) == 'y'
+    dealer_hits_on_soft_17 = get_user_input("Does the dealer HIT or STAND on soft 17? (hit/stand): ", valid_responses=['hit', 'stand']) == 'hit'
+
+    game = BlackjackGame(num_decks, surrender_allowed, dealer_hits_on_soft_17)
 
     while True:
         player_hand = get_player_hand()
         dealer_card = get_dealer_card()
 
-        play_hand(player_hand, dealer_card, card_counter, surrender_allowed, dealer_hits_on_soft_17)
+        game.play_hand()
 
-        cont = input("Do you want to continue playing? (y/n): ").lower()
+        cont = get_user_input("Do you want to continue playing? (y/n): ", valid_responses=['y', 'n'])
         if cont != 'y':
             break
 
