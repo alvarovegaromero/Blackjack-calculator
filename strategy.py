@@ -6,7 +6,8 @@ from card_counter import CardCounter
 def suggest_action(player_hand: Hand, 
                    dealer_card: Card, 
                    card_counter: CardCounter, 
-                   surrender_allowed: bool
+                   surrender_allowed: bool,
+                   dealer_hits_on_soft_17: bool
                    ) -> Action:
     
     player_value = player_hand.value()

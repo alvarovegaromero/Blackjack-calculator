@@ -11,6 +11,9 @@ def get_num_decks():
 def is_surrender_allowed():
     return input("Is surrender allowed? (y/n): ").lower() == 'y'
 
+def get_dealer_strategy():
+    return input("Does the dealer HIT or STAND on soft 17? (hit/stand): ").lower() == 'hit'
+
 def get_player_hand():
     player_input = input("Enter player's hand (comma-separated values, e.g: A,10): ").split(',')
     return Hand([Card(rank) for rank in player_input])
@@ -19,13 +22,13 @@ def get_dealer_card():
     dealer_input = input("Enter dealer's upcard (single value, e.g: 3): ")
     return Card(dealer_input)
 
-def play_hand(player_hand, dealer_card, card_counter, surrender_allowed):
+def play_hand(player_hand, dealer_card, card_counter, surrender_allowed, dealer_hits_on_soft_17):
     for card in player_hand.cards:
         card_counter.record_card(card)
     card_counter.record_card(dealer_card)
 
     while player_hand.value() <= MAXIMUM_VALUE:
-        action = suggest_action(player_hand, dealer_card, card_counter, surrender_allowed)
+        action = suggest_action(player_hand, dealer_card, card_counter, surrender_allowed, dealer_hits_on_soft_17)
 
         print(f"Suggested action: {action}")
 
@@ -44,12 +47,13 @@ def main():
     num_decks = get_num_decks()
     card_counter = CardCounter(num_decks)
     surrender_allowed = is_surrender_allowed()
+    dealer_hits_on_soft_17 = get_dealer_strategy()
 
     while True:
         player_hand = get_player_hand()
         dealer_card = get_dealer_card()
 
-        play_hand(player_hand, dealer_card, card_counter, surrender_allowed)
+        play_hand(player_hand, dealer_card, card_counter, surrender_allowed, dealer_hits_on_soft_17)
 
         cont = input("Do you want to continue playing? (y/n): ").lower()
         if cont != 'y':
