@@ -32,3 +32,4 @@ class CardCounter:
     def get_probability(self, rank: str):
         total_cards = sum(self.remaining_cards.values())
         return self.remaining_cards[rank] / total_cards if total_cards > 0 else 0
+    

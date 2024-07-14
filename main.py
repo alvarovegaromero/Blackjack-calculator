@@ -1,7 +1,6 @@
 from blackjack_game import BlackjackGame
 from input_functions import get_dealer_card, get_player_hand, get_user_input
 
-
 def main():
     print("Welcome to Blackjack Advisor!")
 
@@ -23,3 +22,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+    
