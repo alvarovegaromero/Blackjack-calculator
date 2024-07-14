@@ -9,7 +9,6 @@ def main():
     num_decks = get_user_input("Enter number of decks: ", int)
     surrender_allowed = get_user_input("Is surrender allowed? (y/n): ", valid_responses=['y', 'n']) == 'y'
     dealer_stands_on_soft_17 = get_dealer_strategy()
-    print(dealer_stands_on_soft_17)
 
     game = BlackjackGame(num_decks, surrender_allowed, dealer_stands_on_soft_17)
 
@@ -27,6 +26,8 @@ def main():
                 game.play_hand(player_hand, dealer_card)
             else:
                 break
+
+    print("Thanks for playing!")
 
 if __name__ == "__main__":
     main()
