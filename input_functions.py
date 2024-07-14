@@ -8,7 +8,7 @@ def is_surrender_allowed():
     return input("Is surrender allowed? (y/n): ").lower() == 'y'
 
 def get_dealer_strategy():
-    return input("Does the dealer HIT or STAND on soft 17? (hit/stand): ").lower() == 'hit'
+    return input("Does the dealer STANDs or HITs on soft 17? (stand/hit): ").lower() == 'stand'
 
 def get_player_hand():
     player_input = input("Enter player's hand (comma-separated values, e.g: A,10): ").split(',')

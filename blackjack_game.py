@@ -4,10 +4,10 @@ from card import Card
 from input_functions import get_user_input
 
 class BlackjackGame:
-    def __init__(self, num_decks, surrender_allowed, dealer_hits_on_soft_17):
+    def __init__(self, num_decks, surrender_allowed, dealer_stands_on_soft_17):
         self.num_decks = num_decks
         self.surrender_allowed = surrender_allowed
-        self.dealer_hits_on_soft_17 = dealer_hits_on_soft_17
+        self.dealer_stands_on_soft_17 = dealer_stands_on_soft_17
         self.card_counter = CardCounter(num_decks)
         self.player_hand = None
         self.dealer_card = None

@@ -1,5 +1,5 @@
 from blackjack_game import BlackjackGame
-from input_functions import get_dealer_card, get_player_hand, get_user_input, get_player_new_card
+from input_functions import get_dealer_card, get_dealer_strategy, get_player_hand, get_user_input, get_player_new_card
 
 MAXIMUM_VALUE = 21
 
@@ -8,9 +8,10 @@ def main():
 
     num_decks = get_user_input("Enter number of decks: ", int)
     surrender_allowed = get_user_input("Is surrender allowed? (y/n): ", valid_responses=['y', 'n']) == 'y'
-    dealer_hits_on_soft_17 = get_user_input("Does the dealer HIT or STAND on soft 17? (hit/stand): ", valid_responses=['hit', 'stand']) == 'hit'
+    dealer_stands_on_soft_17 = get_dealer_strategy()
+    print(dealer_stands_on_soft_17)
 
-    game = BlackjackGame(num_decks, surrender_allowed, dealer_hits_on_soft_17)
+    game = BlackjackGame(num_decks, surrender_allowed, dealer_stands_on_soft_17)
 
     while True:
         player_hand = get_player_hand()
