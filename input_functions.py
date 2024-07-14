@@ -24,5 +24,4 @@ def get_user_input(prompt, type_=str, valid_responses=None):
         if valid_responses and response not in valid_responses:
             print(f"Invalid response. Please enter one of the following: {valid_responses}")
         else:
-            return response
-        
+            return response    
