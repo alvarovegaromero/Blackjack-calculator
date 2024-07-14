@@ -2,8 +2,13 @@ from card import Card
 from hand import Hand
 from card_counter import CardCounter
 
+MAXIMUM_VALUE = 21  
+
 def suggest_action(player_hand: Hand, dealer_card: Card, card_counter: CardCounter, surrender_allowed: bool):
     player_value = player_hand.value()
+
+    print("Value of the player: ", player_value)
+    print("Value of the dealer: ", dealer_card.value())
 
     # Strategy
     if player_value >= 17:
@@ -41,20 +46,21 @@ def main():
             card_counter.record_card(card)
         card_counter.record_card(dealer_card)
 
-        action = suggest_action(player_hand, dealer_card, card_counter, surrender_allowed)
+        while player_hand.value() <= MAXIMUM_VALUE:
+            action = suggest_action(player_hand, dealer_card, card_counter, surrender_allowed)
 
-        print(f"Suggested action: {action}")
+            print(f"Suggested action: {action}")
 
-        # add_card = input("Do you want to add a new card? (y/n): ").lower()
-        # if add_card == 'y':
-        #    new_card_input = input("Enter new card (single value, e.g: 3): ")
-        #    new_card = Card(new_card_input)
-        #    player_hand.add_card(new_card)
-        #    card_counter.record_card(new_card)
-        # else:
-        #    break
+            add_card = input("Do you want to add a new card to you hand? (y/n): ").lower()
+            if add_card == 'y':
+                new_card_input = input("Enter your new card (single value, e.g: 3): ")
+                new_card = Card(new_card_input)
+                player_hand.add_card(new_card)
+                card_counter.record_card(new_card)
+            else:
+                break
 
-        cont = input("Do you want to continue? (y/n): ").lower()
+        cont = input("Do you want to continue playing? (y/n): ").lower()
         if cont != 'y':
             break
 
