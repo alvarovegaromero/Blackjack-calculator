@@ -15,5 +15,8 @@ class Hand:
 
         return total
     
+    def add_card(self, card: Card):
+        self.cards.append(card)
+    
     def __str__(self) -> str:
         return ', '.join(str(card) for card in self.cards)
