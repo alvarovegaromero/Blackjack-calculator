@@ -1,16 +1,9 @@
 from card_counter import CardCounter
 from strategy import suggest_action
 from card import Card
+from input_functions import get_user_input
 
 MAXIMUM_VALUE = 21
-
-def get_user_input(prompt, type_=str, valid_responses=None):
-    while True:
-        response = type_(input(prompt))
-        if valid_responses and response not in valid_responses:
-            print(f"Invalid response. Please enter one of the following: {valid_responses}")
-        else:
-            return response
 
 class BlackjackGame:
     def __init__(self, num_decks, surrender_allowed, dealer_hits_on_soft_17):
