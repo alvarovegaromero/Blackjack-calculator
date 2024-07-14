@@ -18,7 +18,7 @@ def get_dealer_card():
     dealer_input = input("Enter dealer's upcard (single value, e.g: 3): ")
     return Card(dealer_input)
 
-def c(prompt, type_=str, valid_responses=None):
+def get_user_input(prompt, type_=str, valid_responses=None):
     while True:
         response = type_(input(prompt))
         if valid_responses and response not in valid_responses:
