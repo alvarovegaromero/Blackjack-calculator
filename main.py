@@ -30,7 +30,7 @@ def main():
                 continue_playing = False
                 break
 
-    print("Your final hand value is: ", player_hand.value())
+        print("Your final hand value is: ", player_hand.value())
 
 if __name__ == "__main__":
     main()
