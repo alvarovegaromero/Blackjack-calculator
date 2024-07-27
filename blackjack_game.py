@@ -1,7 +1,5 @@
 from card_counter import CardCounter
 from strategy import suggest_action
-from card import Card
-from input_functions import get_user_input
 
 class BlackjackGame:
     def __init__(self, num_decks, surrender_allowed, dealer_stands_on_soft_17):

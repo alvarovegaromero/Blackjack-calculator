@@ -1,4 +1,3 @@
-from typing import Dict
 from card import Card
 
 CARDS_PER_DECK = 52
