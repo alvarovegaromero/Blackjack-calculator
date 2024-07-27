@@ -27,10 +27,15 @@ def main():
                 game.add_card_to_player_hand(new_card)
                 game.play_hand(player_hand, dealer_card)
             else:
-                continue_playing = False
                 break
 
         print("Your final hand value is: ", player_hand.value())
+
+        play_again = get_user_input("Do you want to play another hand? (y/n): ", valid_responses=['y', 'n'])
+        if play_again == 'n':
+            continue_playing = False
+
+    print("Thanks for playing!")
 
 if __name__ == "__main__":
     main()
