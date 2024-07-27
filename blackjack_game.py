@@ -19,7 +19,7 @@ class BlackjackGame:
         self.card_counter.record_card(self.dealer_card)
 
         action = suggest_action(player_hand, dealer_card, self.card_counter, self.surrender_allowed, self.dealer_stands_on_soft_17)
-        print(f"Suggested action: {action}")
+        print(f"Suggested action: {action.name}")
 
     def add_card_to_player_hand(self, new_card):
         self.player_hand.add_card(new_card)
