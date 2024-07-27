@@ -12,7 +12,9 @@ def main():
 
     game = BlackjackGame(num_decks, surrender_allowed, dealer_stands_on_soft_17)
 
-    while True:
+    continue_playing = True
+
+    while continue_playing:
         player_hand = get_player_hand()
         dealer_card = get_dealer_card()
 
@@ -25,9 +27,10 @@ def main():
                 game.add_card_to_player_hand(new_card)
                 game.play_hand(player_hand, dealer_card)
             else:
+                continue_playing = False
                 break
 
-    print("Thanks for playing!")
+    print("Your final hand value is: ", player_hand.value())
 
 if __name__ == "__main__":
     main()
