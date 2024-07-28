@@ -1,7 +1,6 @@
 from blackjack_game import BlackjackGame
 from input_functions import get_dealer_card, get_dealer_strategy, get_player_hand, get_user_input, get_player_new_card
-
-MAXIMUM_VALUE = 21
+from constants import MAXIMUM_HAND_VALUE
 
 def main():
     print("Welcome to Blackjack Advisor!")
@@ -20,7 +19,7 @@ def main():
 
         game.play_hand(player_hand, dealer_card)
 
-        while player_hand.value() <= 21:
+        while player_hand.value() <= MAXIMUM_HAND_VALUE:
             add_card = get_user_input("Do you want to add a new card to you hand? (y/n): ", valid_responses=['y', 'n'])
             if add_card == 'y':
                 new_card = get_player_new_card()
